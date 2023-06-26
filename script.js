@@ -1,9 +1,40 @@
+class Producto {
+  constructor(nombre, valor, alt, img) {
+    this.img = img;
+    this.nombre = nombre;
+    this.valor = valor;
+    this.alt = alt;
+  }
+}
 
+const productos = [
+  new Producto("Tercera Camiseta Boca 23/24", "$27.999", "Camiseta Celeste Boca", "https://bocashop.vteximg.com.br/arquivos/ids/169709-550-550/HT9916_1.jpg?v=638199528119430000"),
+  new Producto("Camiseta Boca Titular 22/23", "$21.999", "Camiseta Boca Titular 22/23", "https://bocashop.vteximg.com.br/arquivos/ids/168815-550-550/HE6329_1.jpg?v=637975643272330000"),
+  new Producto("Camiseta Alternativa Boca 22/23", "$21.999", "Camiseta Alternativa Boca 22/23", "https://bocashop.vteximg.com.br/arquivos/ids/168780-550-550/IB9458_1.jpg?v=637975642811000000"),
+  new Producto("Short Arquero Boca 22/23", "$12.999", "Short Arquero Boca 22/23", "https://bocashop.vteximg.com.br/arquivos/ids/168807-550-550/HE6327.jpg?v=637975643182000000"),
+  new Producto("Tercera Camiseta 22/23", "$32.999", "Tercera Camiseta 22/23", "https://bocashop.vteximg.com.br/arquivos/ids/169068-550-550/GC0433_1.jpg?v=638036881373030000"),
+  new Producto("Hoodie Boca", "$29.999", "Hoodie Boca", "https://bocashop.vteximg.com.br/arquivos/ids/169541-550-550/HC0984_2.jpg?v=638122401881500000"),
+  new Producto("Campera Presentación Boca", "$30.000", "Campera Presentación Boca", "https://bocashop.vteximg.com.br/arquivos/ids/169286-550-550/HC1009_1.jpg?v=638090670845130000"),
+  new Producto("Campera Invierno Boca", "$62.999", "Campera Invierno Boca", "https://bocashop.vteximg.com.br/arquivos/ids/168666-550-550/HB0565_1.jpg?v=637944618994930000"),
+  new Producto("Camiseta Titular Basquet", "$17.999", "Camiseta Titular Basquet", "https://bocashop.vteximg.com.br/arquivos/ids/169683-550-550/HR8267_1.png?v=638193397661070000")
+];
 
+const productContainer = document.querySelector('.contenedor-items');
+
+productos.forEach(producto => {
+  const productDiv = document.createElement('div');
+  productDiv.classList.add('item');
+  productDiv.innerHTML = `
+    <span class="titulo-item">${producto.nombre}</span>
+    <img src="${producto.img}" alt="${producto.alt}" class="img-item">
+    <span class="precio-item">${producto.valor}</span>
+    <button class="boton-item">Agregar al Carrito</button>
+  `;
+  productContainer.appendChild(productDiv);
+});
 
 let form = document.getElementById("myForm");
 let submitButton = document.getElementById("enviar");
-
 
 //Agregar un evento al boton
 submitButton.addEventListener("click",function(e){
@@ -83,6 +114,7 @@ function agregarAlCarritoClicked(event) {
     let imagenSrc = item.getElementsByClassName('img-item')[0].src;
     console.log(imagenSrc);
 
+
     agregarItemAlCarrito(titulo, precio, imagenSrc);
 
     hacerVisibleCarrito();
@@ -104,16 +136,14 @@ function agregarItemAlCarrito(titulo, precio, imagenSrc) {
     let item = document.createElement('div');
     item.classList.add('item');
     let itemsCarrito = document.getElementsByClassName('carrito-items')[0];
-
-    //Controlamos que el item que intenta ingresar no se encuentre en el carrito
-    let nombresItemsCarrito = itemsCarrito.getElementsByClassName('carrito-item-titulo');
-    for (let i = 0; i < nombresItemsCarrito.length; i++) {
-        if (nombresItemsCarrito[i].innerText == titulo) {
-            alert("El item ya se encuentra en el carrito");
-            return;
-        }
-    }
-
+  //Controlamos que el item que intenta ingresar no se encuentre en el carrito
+  let nombresItemsCarrito = itemsCarrito.getElementsByClassName('carrito-item-titulo');
+  for (let i = 0; i < nombresItemsCarrito.length; i++) {
+      if (nombresItemsCarrito[i].innerText == titulo) {
+          alert("El item ya se encuentra en el carrito");
+        
+      }
+  }
     let itemCarritoContenido = `
         <div class="carrito-item">
             <img src="${imagenSrc}" width="80px" alt="">

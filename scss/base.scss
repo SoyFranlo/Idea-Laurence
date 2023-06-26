@@ -1,0 +1,16 @@
+$primary-color: #0d0058;
+$secondary-color: #666;
+$accent-color: #007bff;
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans';
+}
+h1 {
+    text-align: center;
+    font-size: 35px;
+    background-color: $primary-color;
+    color: #fff;
+    padding: 30px 0;
+  }
