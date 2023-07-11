@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="styles.css">
   
   <title>Pasión Xeneize</title>
@@ -16,21 +17,21 @@
     <h1>Pasion Xeneize - Tienda de Indumentaria de Boca</h1>
   </header>
   <main>
-    <form class="myForm" action="" method="post">
-      <p>
-        <label for="nombre" class="colocar_nombre">Nombre
-          <span class="obligatorio">*</span>
-        </label>
-        <input type="text" name="introducir_nombre" id="nombre" required="obligatorio" placeholder="Escribe tu nombre">
-      </p>
-
-      <p>
-        <label for="email" class="colocar_email">Email
-          <span class="obligatorio">*</span>
-        </label>
-        <input type="email" name="introducir_email" id="email" required="obligatorio" placeholder="Escribe tu Email">
-      </p>
-      <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
+    <form id= "myForm" class="myForm" action="" method="post">
+      <div class="form-group">
+        <label for="nombre" class="colocar_nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" required="obligatorio" placeholder="Ingresa tu nombre">
+      </div>
+      <div class="form-group">
+        <label for="email" class="colocar_email">Email</label>
+        <input type="email" name="introducir_email" class="form-control" id="email" required="obligatorio" aria-describedby="emailHelp" placeholder="Ingresa tu correo">
+        <small id="emailHelp" class="form-text text-muted">Nunca compartiremos tus datos con terceros.</small>
+      </div>
+      <div class="form-group">
+        <label for="password" class="colocar_contrasena">Contraseña</label>
+        <input type="password" class="form-control" id="password" required="obligatorio" placeholder="Contraseña">
+      </div>
+      <button value="submit" type="submit" class="btn btn-primary" id="botonform">Enviar</button>
     </form>
 
       <section class="contenedor">
@@ -57,7 +58,7 @@
 
               </span>
             </div>
-            <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
+            <button   class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
           </div>
         </div>
       </section>
