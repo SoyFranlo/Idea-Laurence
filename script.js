@@ -108,18 +108,21 @@ submitButton.addEventListener("click", function (e) {
       document.getElementById("myForm").style.display = "none";
       let header = document.getElementsByClassName("header")[0];
       const headerh2 = document.createElement("h2");
-      const cerrarsesion = document.createElement("button");
+      let cerrarsesion = document.createElement("button");
       cerrarsesion.classList.add("cerrarsesion");
       cerrarsesion.textContent = "Cerrar Sesión";
       headerh2.textContent = "Bienvenido " + nombre;
       header.appendChild(headerh2);
       header.appendChild(cerrarsesion);
+      cerrarsesion.addEventListener("click", function () {
+        location.reload();
+      });
     }
   }
 });
-cerrarsesion.addEventListener("click", function () {
-  location.reload();
-});
+
+
+
 //Variable que mantiene el estado visible del carrito
 let carritoVisible = false;
 
