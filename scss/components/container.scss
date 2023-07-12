@@ -11,7 +11,6 @@
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       grid-gap: 30px;
       grid-row-gap: 30px;
-      width: 60%;
       width: 100%;
       transition: .3s;
       
@@ -42,7 +41,7 @@
           display: block;
           text-align: center;
           font-weight: bold;
-          font-size: 22px;
+          font-size: 1.3rem;
         }
         
         .boton-item {

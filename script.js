@@ -85,6 +85,7 @@ submitButton.addEventListener("click", function (e) {
   let nombre = document.getElementById("nombre").value;
   let email = document.getElementById("email").value;
   let contrasena = document.getElementById("password").value;
+  const header = document.querySelector(".header");
 
   let nuevousuario = {
     nombreUsuario: nombre,
@@ -104,11 +105,21 @@ submitButton.addEventListener("click", function (e) {
     } else {
       localStorage.setItem("usuario", JSON.stringify(nuevousuario));
       alert("Hola " + nombre);
-      document.getElementById("myForm").reset();
+      document.getElementById("myForm").style.display = "none";
+      let header = document.getElementsByClassName("header")[0];
+      const headerh2 = document.createElement("h2");
+      const cerrarsesion = document.createElement("button");
+      cerrarsesion.classList.add("cerrarsesion");
+      cerrarsesion.textContent = "Cerrar Sesión";
+      headerh2.textContent = "Bienvenido " + nombre;
+      header.appendChild(headerh2);
+      header.appendChild(cerrarsesion);
     }
   }
 });
-
+cerrarsesion.addEventListener("click", function () {
+  location.reload();
+});
 //Variable que mantiene el estado visible del carrito
 let carritoVisible = false;
 
@@ -158,6 +169,8 @@ function ready() {
 //Eliminamos todos los elementos del carrito y lo ocultamos
 
 function pagarClicked() {
+  let btnPagar = document.getElementsByClassName("btn-pagar")[0];
+  btnPagar.style.display = "none";
   let usuarioGuardado = localStorage.getItem("usuario");
   if (usuarioGuardado) {
     let usuario = JSON.parse(usuarioGuardado);

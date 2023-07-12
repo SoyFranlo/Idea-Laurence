@@ -1,0 +1,19 @@
+.form{
+    border: solid $primary-color 5px;
+    border-radius: 10px;
+    background-color: rgb(242, 255, 120);
+    width: fit-content;
+    padding: 1%;
+}
+.colocar_nombre .colocar_email .colocar_contrasena{
+font-size: 0.8rem;
+}
+.enviar-form{
+    display: block;
+    width: 100%;
+    font-size: 0.9rem;
+    align-self: center;
+    justify-self: center;
+    border: solid 2px;
+    border-radius: 5px;
+}

@@ -13,11 +13,11 @@
 </head>
 
 <body>
-  <header>
+  <header class="header">
     <h1>Pasion Xeneize - Tienda de Indumentaria de Boca</h1>
   </header>
   <main>
-    <form id= "myForm" class="myForm" action="" method="post">
+    <form id= "myForm" class="form" action="" method="post">
       <div class="form-group">
         <label for="nombre" class="colocar_nombre">Nombre</label>
         <input type="text" class="form-control" id="nombre" required="obligatorio" placeholder="Ingresa tu nombre">
@@ -31,14 +31,10 @@
         <label for="password" class="colocar_contrasena">Contraseña</label>
         <input type="password" class="form-control" id="password" required="obligatorio" placeholder="Contraseña">
       </div>
-      <button value="submit" type="submit" class="btn btn-primary" id="botonform">Enviar</button>
+      <button id="botonform" value="submit" type="submit" class="enviar-form">Enviar</button>
     </form>
 
       <section class="contenedor">
-        <!-- Contenedor de elementos -->
-        <div class="contenedor-items">
-        </div>
-        <!-- Carrito de Compras -->
         <div class="carrito" id="carrito">
           <div class="header-carrito">
             <h2>Tu Carrito</h2>
@@ -61,6 +57,11 @@
             <button   class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
           </div>
         </div>
+        <!-- Contenedor de elementos -->
+        <div class="contenedor-items">
+        </div>
+        <!-- Carrito de Compras -->
+        
       </section>
   </main>
   <script src="script.js" async></script>

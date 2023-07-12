@@ -14,9 +14,22 @@ main {
   backdrop-filter: blur(10px);
 }
 
+.header {
+  display: flex;
+  position: static;
+  flex-direction: column;
+}
+.header h2 {
+  background-color: #0d0058;
+  color: #fff;
+}
+.header .cerrarsesion {
+  font-size: 1rem;
+}
+
 h1 {
   text-align: center;
-  font-size: 35px;
+  font-size: 2.1rem;
   background-color: #0d0058;
   color: #fff;
   padding: 30px 0;
@@ -36,7 +49,6 @@ h1 {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   grid-gap: 30px;
   grid-row-gap: 30px;
-  width: 60%;
   width: 100%;
   transition: 0.3s;
 }
@@ -64,7 +76,7 @@ h1 {
   display: block;
   text-align: center;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 1.3rem;
 }
 .contenedor .contenedor-items .item .boton-item {
   display: block;
@@ -121,7 +133,7 @@ h1 {
 }
 .carrito .carrito-item .selector-cantidad .carrito-item-cantidad {
   border: none;
-  font-size: 18px;
+  font-size: 1.1rem;
   background-color: transparent;
   display: inline-block;
   width: 30px;
@@ -129,7 +141,7 @@ h1 {
   text-align: center;
 }
 .carrito .carrito-item .selector-cantidad i {
-  font-size: 18px;
+  font-size: 1.1rem;
   width: 32px;
   height: 32px;
   line-height: 32px;
@@ -141,7 +153,7 @@ h1 {
 .carrito .carrito-item .carrito-item-precio {
   font-weight: bold;
   display: inline-block;
-  font-size: 18px;
+  font-size: 1.1rem;
   margin: 5px;
 }
 .carrito .carrito-item .btn-eliminar {
@@ -149,7 +161,7 @@ h1 {
   right: 15px;
   top: 15px;
   color: #0d0058;
-  font-size: 20px;
+  font-size: 1.2rem;
   width: 40px;
   height: 40px;
   line-height: 40px;
@@ -173,7 +185,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 22px;
+  font-size: 1.4rem;
   font-weight: bold;
   margin-bottom: 10px;
 }
@@ -184,7 +196,7 @@ h1 {
   background: #0d0058;
   color: #fff;
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 1.1rem;
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -197,18 +209,47 @@ h1 {
 }
 
 /* SECCION RESPONSIVE */
-@media screen and (max-width: 850px) {
-  .contenedor {
+@media screen and (max-width: 903px) {
+  .header {
     display: block;
+    position: static;
   }
-  .contenedor-items {
-    width: 100%;
+  .contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .carrito {
+    height: 20%;
     width: 100%;
-    position: sticky;
-    display: flex;
+    position: initial;
+    display: block;
+    z-index: 2;
+    padding: 0px;
+    background-color: #fff;
   }
+}
+.form {
+  border: solid #0d0058 5px;
+  border-radius: 10px;
+  background-color: rgb(242, 255, 120);
+  width: fit-content;
+  padding: 1%;
+}
+
+.colocar_nombre .colocar_email .colocar_contrasena {
+  font-size: 0.8rem;
+}
+
+.enviar-form {
+  display: block;
+  width: 100%;
+  font-size: 0.9rem;
+  align-self: center;
+  justify-self: center;
+  border: solid 2px;
+  border-radius: 5px;
 }
 
 /*# sourceMappingURL=styles.css.map */

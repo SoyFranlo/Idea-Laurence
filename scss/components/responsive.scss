@@ -1,16 +1,22 @@
 /* SECCION RESPONSIVE */
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 903px) {
+  .header{
+    display: block;
+    position: static;
+  }
     .contenedor {
-      display: block;
-    }
-    
-    .contenedor-items {
-      width: 100%;
-    }
-    
-    .carrito {
-      width: 100%;
-      position: sticky;
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .carrito {
+      height: 20%;
+      width: 100%;
+      position: initial;
+      display: block;
+      z-index: 2;
+      padding: 0px;
+      background-color: #fff;
     }
   }
