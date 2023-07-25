@@ -5,10 +5,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="./node_modules/sweetalert2/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
-  
+
   <title>Pasión Xeneize</title>
 </head>
 
@@ -17,54 +21,38 @@
     <h1>Pasion Xeneize - Tienda de Indumentaria de Boca</h1>
   </header>
   <main>
-    <form id= "myForm" class="form" action="" method="post">
-      <div class="form-group">
-        <label for="nombre" class="colocar_nombre">Nombre</label>
-        <input type="text" class="form-control" id="nombre" required="obligatorio" placeholder="Ingresa tu nombre">
-      </div>
-      <div class="form-group">
-        <label for="email" class="colocar_email">Email</label>
-        <input type="email" name="introducir_email" class="form-control" id="email" required="obligatorio" aria-describedby="emailHelp" placeholder="Ingresa tu correo">
-        <small id="emailHelp" class="form-text text-muted">Nunca compartiremos tus datos con terceros.</small>
-      </div>
-      <div class="form-group">
-        <label for="password" class="colocar_contrasena">Contraseña</label>
-        <input type="password" class="form-control" id="password" required="obligatorio" placeholder="Contraseña">
-      </div>
-      <button id="botonform" value="submit" type="submit" class="enviar-form">Enviar</button>
-    </form>
+    <section class="contenedor">
+      <div class="carrito" id="carrito">
+        <div class="header-carrito">
+          <h2>Tu Carrito</h2>
+        </div>
 
-      <section class="contenedor">
-        <div class="carrito" id="carrito">
-          <div class="header-carrito">
-            <h2>Tu Carrito</h2>
-          </div>
+        <div class="carrito-items">
+          <div class="selector-cantidad">
+            <i class="fa-solid fa-minus restar-cantidad"></i>
+            <i class="fa-solid fa-plus sumar-cantidad"></i>
 
-          <div class="carrito-items">
-            <div class="selector-cantidad">
-              <i class="fa-solid fa-minus restar-cantidad"></i>
-              <i class="fa-solid fa-plus sumar-cantidad"></i>
-
-            </div>         
-          </div>
-          <div class="carrito-total">
-            <div class="fila">
-              <strong>Tu Total</strong>
-              <span class="carrito-precio-total">
-
-              </span>
-            </div>
-            <button   class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
           </div>
         </div>
-        <!-- Contenedor de elementos -->
-        <div class="contenedor-items">
+        <div class="carrito-total">
+    <span class="carrito-item-precio"></span>
+          <div class="fila">
+            <strong>Tu Total</strong>
+            <span class="carrito-precio-total">
+
+            </span>
+          </div>
+          <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
         </div>
-        <!-- Carrito de Compras -->
-        
-      </section>
+      </div>
+      <!-- Contenedor de elementos -->
+      <div class="contenedor-items">
+      </div>
+      <!-- Carrito de Compras -->
+
+    </section>
   </main>
-  <script src="script.js" async></script>
-</body>
+  <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="./JS/script.js" async></script>
 
 </html>

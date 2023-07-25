@@ -1,6 +1,6 @@
 /* seccion carrito */
 .carrito {
-    border: 1px solid $secondary-color;
+    border: 1px solid #666;
     width: 35%;
     margin-top: 30px;
     border-radius: 10px;
@@ -13,7 +13,7 @@
     opacity: 0;
     
     .header-carrito {
-      background-color: $primary-color;
+      background-color: #0d0058;
       color: #fff;
       text-align: center;
       padding: 30px 0;
@@ -24,7 +24,7 @@
       align-items: center;
       justify-content: space-between;
       position: relative;
-      border-bottom: 1px solid $secondary-color;
+      border-bottom: 1px solid #666;
       padding: 20px;
       
       img {
@@ -60,7 +60,7 @@
           line-height: 32px;
           text-align: center;
           border-radius: 50%;
-          border: 1px solid $primary-color;
+          border: 1px solid #0d0058;
           cursor: pointer;
         }
       }
@@ -76,14 +76,14 @@
         position: absolute;
         right: 15px;
         top: 15px;
-        color: $primary-color;
+        color: #0d0058;
         font-size: 1.2rem;
         width: 40px;
         height: 40px;
         line-height: 40px;
         text-align: center;
         border-radius: 50%;
-        border: 1px solid $primary-color;
+        border: 1px solid #0d0058;
         cursor: pointer;
         display: block;
         background: transparent;
@@ -113,7 +113,7 @@
         display: block;
         width: 100%;
         border: none;
-        background: $primary-color;
+        background: #0d0058;
         color: #fff;
         border-radius: 5px;
         font-size: 1.1rem;
@@ -129,4 +129,7 @@
         }
       }
     }
+  }
+  .costo-titulo .costo-precio{
+    font-size: 0.1rem;
   }

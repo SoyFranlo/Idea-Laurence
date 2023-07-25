@@ -1,127 +1,35 @@
-class Producto {
-  constructor(nombre, valor, alt, img) {
-    this.img = img;
-    this.nombre = nombre;
-    this.valor = valor;
-    this.alt = alt;
-  }
-}
-
-const productos = [
-  new Producto(
-    "Tercera Camiseta Boca 23/24",
-    "$27.999",
-    "Camiseta Celeste Boca",
-    "https://bocashop.vteximg.com.br/arquivos/ids/169709-550-550/HT9916_1.jpg?v=638199528119430000"
-  ),
-  new Producto(
-    "Camiseta Boca Titular 22/23",
-    "$21.999",
-    "Camiseta Boca Titular 22/23",
-    "https://bocashop.vteximg.com.br/arquivos/ids/168815-550-550/HE6329_1.jpg?v=637975643272330000"
-  ),
-  new Producto(
-    "Camiseta Alternativa Boca 22/23",
-    "$21.999",
-    "Camiseta Alternativa Boca 22/23",
-    "https://bocashop.vteximg.com.br/arquivos/ids/168780-550-550/IB9458_1.jpg?v=637975642811000000"
-  ),
-  new Producto(
-    "Short Arquero Boca 22/23",
-    "$12.999",
-    "Short Arquero Boca 22/23",
-    "https://bocashop.vteximg.com.br/arquivos/ids/168807-550-550/HE6327.jpg?v=637975643182000000"
-  ),
-  new Producto(
-    "Tercera Camiseta 22/23",
-    "$32.999",
-    "Tercera Camiseta 22/23",
-    "https://bocashop.vteximg.com.br/arquivos/ids/169068-550-550/GC0433_1.jpg?v=638036881373030000"
-  ),
-  new Producto(
-    "Hoodie Boca",
-    "$29.999",
-    "Hoodie Boca",
-    "https://bocashop.vteximg.com.br/arquivos/ids/169541-550-550/HC0984_2.jpg?v=638122401881500000"
-  ),
-  new Producto(
-    "Campera Presentación Boca",
-    "$30.000",
-    "Campera Presentación Boca",
-    "https://bocashop.vteximg.com.br/arquivos/ids/169286-550-550/HC1009_1.jpg?v=638090670845130000"
-  ),
-  new Producto(
-    "Campera Invierno Boca",
-    "$62.999",
-    "Campera Invierno Boca",
-    "https://bocashop.vteximg.com.br/arquivos/ids/168666-550-550/HB0565_1.jpg?v=637944618994930000"
-  ),
-  new Producto(
-    "Camiseta Titular Basquet",
-    "$17.999",
-    "Camiseta Titular Basquet",
-    "https://bocashop.vteximg.com.br/arquivos/ids/169683-550-550/HR8267_1.png?v=638193397661070000"
-  ),
-];
 
 const productContainer = document.querySelector(".contenedor-items");
+// let usuarioGuardado = localStorage.getItem("usuario");
+// let usuario = usuarioGuardado ? JSON.parse(usuarioGuardado) : null;
 
-productos.forEach((producto) => {
-  const productDiv = document.createElement("div");
-  productDiv.classList.add("item");
-  productDiv.innerHTML = `
-    <span class="titulo-item">${producto.nombre}</span>
-    <img src="${producto.img}" alt="${producto.alt}" class="img-item">
-    <span class="precio-item">${producto.valor}</span>
-    <button class="boton-item">Agregar al Carrito</button>
-  `;
-  productContainer.appendChild(productDiv);
-});
-let submitButton = document.getElementById("botonform");
 
-submitButton.addEventListener("click", function (e) {
-  e.preventDefault();
+async function fetchProductos() {
+  try {
+    const response = await fetch("../JSON/productos.json");
+    const data = await response.json();
+    const productos = data.productos;
 
-  let nombre = document.getElementById("nombre").value;
-  let email = document.getElementById("email").value;
-  let contrasena = document.getElementById("password").value;
-  const header = document.querySelector(".header");
+    productos.forEach((producto) => {
+      const productDiv = document.createElement("div");
+      productDiv.classList.add("item");
+      productDiv.innerHTML = `
+        <span class="titulo-item">${producto.nombre}</span>
+        <img src="${producto.img}" alt="${producto.alt}" class="img-item">
+        <span class="precio-item">${producto.valor}</span>
+        <button class="boton-item">Agregar al Carrito</button>
+      `;
+      productContainer.appendChild(productDiv);
 
-  let nuevousuario = {
-    nombreUsuario: nombre,
-    emailUsuario: email,
-    contrasenaUsuario: contrasena,
-    estaLogueado: false,
-  };
-
-  if (!nombre || !email || !contrasena) {
-    alert("Hay campos sin completar");
-    return;
-  } else {
-    const emailRegex = /^\S+@\S+\.\S+$/;
-    if (!emailRegex.test(email)) {
-      alert("El correo ingresado no es válido.");
-      return;
-    } else {
-      localStorage.setItem("usuario", JSON.stringify(nuevousuario));
-      alert("Hola " + nombre);
-      document.getElementById("myForm").style.display = "none";
-      let header = document.getElementsByClassName("header")[0];
-      const headerh2 = document.createElement("h2");
-      let cerrarsesion = document.createElement("button");
-      cerrarsesion.classList.add("cerrarsesion");
-      cerrarsesion.textContent = "Cerrar Sesión";
-      headerh2.textContent = "Bienvenido " + nombre;
-      header.appendChild(headerh2);
-      header.appendChild(cerrarsesion);
-      cerrarsesion.addEventListener("click", function () {
-        location.reload();
-      });
-    }
+      // Agregar evento "click" del botón "Agregar al Carrito"
+      const botonAgregar = productDiv.querySelector(".boton-item");
+      botonAgregar.addEventListener("click", agregarAlCarritoClicked);
+    });
+  } catch (error) {
+    console.log("Ha ocurrido un error:", error);
   }
-});
-
-
+}
+fetchProductos();
 
 //Variable que mantiene el estado visible del carrito
 let carritoVisible = false;
@@ -134,6 +42,64 @@ if (document.readyState == "loading") {
 }
 
 function ready() {
+  mostrarFormularioInicio();
+};
+// Función para mostrar el formulario de inicio con SweetAlert
+function mostrarFormularioInicio() {
+  Swal.fire({
+    title: 'Formulario de Inicio',
+    html: `
+      <input type="text" id="nombre" class="swal2-input" placeholder="Nombre" required>
+      <input type="email" id="email" class="swal2-input" placeholder="Email" required>
+      <select id="sel-pais" class="swal2-input" required>
+        <option value="" selected disabled>Elegir País</option>
+        <option value="Argentina">Argentina</option>
+        <option value="Uruguay">Uruguay</option>
+      </select>
+    `,
+    focusConfirm: false,
+    showCancelButton: false,
+    confirmButtonText: 'Enviar',
+    allowOutsideClick: false,
+    preConfirm: () => {
+      const nombre = document.getElementById("nombre").value;
+      const email = document.getElementById("email").value;
+      const paisSeleccionado = document.getElementById("sel-pais").value;
+
+      if (!nombre || !email || !paisSeleccionado) {
+        Swal.showValidationMessage('Por favor, completa todos los campos.');
+        return;
+      }
+
+      const emailRegex = /^\S+@\S+\.\S+$/;
+      if (!emailRegex.test(email)) {
+        Swal.showValidationMessage('El correo ingresado no es válido.');
+        return;
+      }
+
+      // Guardar la información del usuario, incluyendo el país seleccionado
+      const nuevousuario = {
+        nombreUsuario: nombre,
+        emailUsuario: email,
+        paisUsuario: paisSeleccionado,
+        estaLogueado: false,
+      };
+      localStorage.setItem("usuario", JSON.stringify(nuevousuario));
+
+      // Mostrar Sweet Alert con el mensaje de bienvenida
+      Swal.fire({
+        icon: 'success',
+        title: `¡Bienvenido/a ${nombre}!`,
+        text: 'Gracias por unirte a Pasión Xeneize.',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Al confirmar, ocultamos el SweetAlert y realizamos las acciones adicionales
+          document.getElementById("myForm").style.display = "none";
+        }
+      });
+    },
+  });
+}
   //Agregremos funcionalidad a los botones eliminar del carrito
   let botonesEliminarItem = document.getElementsByClassName("btn-eliminar");
   for (let i = 0; i < botonesEliminarItem.length; i++) {
@@ -167,67 +133,24 @@ function ready() {
   document
     .getElementsByClassName("btn-pagar")[0]
     .addEventListener("click", pagarClicked);
-}
+
 
 //Eliminamos todos los elementos del carrito y lo ocultamos
 
 function pagarClicked() {
-  let btnPagar = document.getElementsByClassName("btn-pagar")[0];
-  btnPagar.style.display = "none";
-  let usuarioGuardado = localStorage.getItem("usuario");
-  if (usuarioGuardado) {
-    let usuario = JSON.parse(usuarioGuardado);
-    if (!usuario.estaLogueado) {
-      // Crear elementos de input para email y contraseña
-      let emailInput = document.createElement("input");
-      emailInput.type = "email";
-      emailInput.placeholder = "Ingresa tu email";
-      emailInput.id = "emailCarrito";
-
-      let contrasenaInput = document.createElement("input");
-      contrasenaInput.type = "password";
-      contrasenaInput.placeholder = "Ingresa tu contraseña";
-      contrasenaInput.id = "contrasenaCarrito";
-
-      // Mostrar inputs en el carrito
-      let carritoItems = document.getElementsByClassName("carrito-items")[0];
-      let inputsContainer = document.createElement("div");
-      inputsContainer.classList.add("carrito-inputs-container");
-      inputsContainer.appendChild(emailInput);
-      inputsContainer.appendChild(contrasenaInput);
-      carritoItems.appendChild(inputsContainer);
-
-      // Crear botón de confirmar
-      let confirmarButton = document.createElement("button");
-      confirmarButton.textContent = "Confirmar";
-      confirmarButton.classList.add("carrito-confirmar-button");
-      carritoItems.appendChild(confirmarButton);
-
-      // Escuchar el evento click del botón de confirmar
-      confirmarButton.addEventListener("click", function () {
-        let emailCarrito = document.getElementById("emailCarrito").value;
-        let contrasenaCarrito =
-          document.getElementById("contrasenaCarrito").value;
-
-        // Validar si los datos ingresados coinciden con los del usuario almacenado
-        if (
-          emailCarrito === usuario.emailUsuario &&
-          contrasenaCarrito === usuario.contrasenaUsuario
-        ) {
-          // Eliminar los inputs y el botón del carrito
-          carritoItems.removeChild(inputsContainer);
-          carritoItems.removeChild(confirmarButton);
-
-          // Resto del código para completar la compra...
-          alert("Gracias por tu compra!");
-          vaciarCarrito();
-        } else {
-          alert("Los datos ingresados no coinciden con los del usuario.");
-        }
-      });
-    }
-  }
+  // Realizamos directamente el proceso de compra
+  Swal.fire({
+    icon: 'success',
+    title: 'Gracias por tu compra!',
+    text: 'Serás redirigido/a al inicio',
+  });
+  setTimeout(function(){
+    window.location.reload();
+ }, 3000);
+  // Vaciamos el carrito
+  vaciarCarrito();
 }
+
 
 // Función para vaciar el carrito
 function vaciarCarrito() {
@@ -250,11 +173,30 @@ function agregarAlCarritoClicked(event) {
 
   agregarItemAlCarrito(titulo, precio, imagenSrc);
 
-  hacerVisibleCarrito();
+  mostrarCarrito();
 }
-
+function obtenerCostoEnvio(pais) {
+  if (pais === "Argentina") {
+    return 5000;
+  } else if (pais === "Uruguay") {
+    return 3000;
+  }
+  // Si el país no es Argentina ni Uruguay, retornar 0 o cualquier otro valor por defecto
+  return 0;
+}
+// Obtener el costo de envío según el país seleccionado
+const usuarioGuardado = localStorage.getItem("usuario");
+let costoEnvio = 0;
+if (usuarioGuardado) {
+  const usuario = JSON.parse(usuarioGuardado);
+  costoEnvio = obtenerCostoEnvio(usuario.paisUsuario);
+}
+// Crear el elemento div para el costo de envío y agregarlo al carrito
+const costoEnvioSpan = document.getElementsByClassName("carrito-item-precio")[0];
+costoEnvioSpan.innerHTML = `Costo de Envio: $${costoEnvio}`;
+document.getElementsByClassName("carrito-total")[0].appendChild(costoEnvioSpan);
 //Función que hace visible el carrito
-function hacerVisibleCarrito() {
+function mostrarCarrito() {
   carritoVisible = true;
   let carrito = document.getElementsByClassName("carrito")[0];
   carrito.style.marginRight = "0";
@@ -262,8 +204,9 @@ function hacerVisibleCarrito() {
 
   let items = document.getElementsByClassName("contenedor-items")[0];
   items.style.width = "60%";
-}
-
+    
+  }
+  
 //Función que agrega un item al carrito
 function agregarItemAlCarrito(titulo, precio, imagenSrc) {
   let item = document.createElement("div");
@@ -364,7 +307,7 @@ function eliminarItemCarrito(event) {
 //Función que controla si hay elementos en el carrito. Si no hay, oculto el carrito.
 function ocultarCarrito() {
   let carritoItems = document.getElementsByClassName("carrito-items")[0];
-  if (carritoItems.childElementCount == 0) {
+  if (carritoItems.childElementCount === 1) {
     let carrito = document.getElementsByClassName("carrito")[0];
     carrito.style.marginRight = "-100%";
     carrito.style.opacity = "0";
@@ -394,7 +337,7 @@ function actualizarTotalCarrito() {
     let cantidad = cantidadItem.value;
     total = total + precio * cantidad;
   }
-
+const nuevoTotal = total + costoEnvio;
   document.getElementsByClassName("carrito-precio-total")[0].innerText =
-    "$" + total.toLocaleString("es") + ",00";
+    "$" + nuevoTotal.toLocaleString("es") + ",00";
 }

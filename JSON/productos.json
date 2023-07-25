@@ -1,0 +1,77 @@
+{
+    "productos": [
+      {
+        "img": "https://bocashop.vteximg.com.br/arquivos/ids/169709-550-550/HT9916_1.jpg?v=638199528119430000",
+        "nombre": "Tercera Camiseta Boca 23/24",
+        "valor": "$27.999",
+        "alt": "Camiseta Celeste Boca"
+      },
+      {
+        "img": "https://bocashop.vteximg.com.br/arquivos/ids/168815-550-550/HE6329_1.jpg?v=637975643272330000",
+        "nombre": "Camiseta Boca Titular 22/23",
+        "valor": "$21.999",
+        "alt": "Camiseta Boca Titular 22/23"
+      },
+      {
+        "img": "https://bocashop.vteximg.com.br/arquivos/ids/168780-550-550/IB9458_1.jpg?v=637975642811000000",
+        "nombre": "Camiseta Alternativa Boca 22/23",
+        "valor": "$21.999",
+        "alt": "Camiseta Alternativa Boca 22/23"
+      },
+      {
+        "img": "https://bocashop.vteximg.com.br/arquivos/ids/168807-550-550/HE6327.jpg?v=637975643182000000",
+        "nombre": "Short Arquero Boca 22/23",
+        "valor": "$12.999",
+        "alt": "Short Arquero Boca 22/23"
+      },
+      {
+        "img": "https://bocashop.vteximg.com.br/arquivos/ids/169068-550-550/GC0433_1.jpg?v=638036881373030000",
+        "nombre": "Tercera Camiseta 22/23",
+        "valor": "$32.999",
+        "alt": "Tercera Camiseta 22/23"
+      },
+      {
+        "img": "https://bocashop.vteximg.com.br/arquivos/ids/169541-550-550/HC0984_2.jpg?v=638122401881500000",
+        "nombre": "Hoodie Boca",
+        "valor": "$29.999",
+        "alt": "Hoodie Boca"
+      },
+      {
+        "img": "https://bocashop.vteximg.com.br/arquivos/ids/169286-550-550/HC1009_1.jpg?v=638090670845130000",
+        "nombre": "Campera Presentación Boca",
+        "valor": "$30.000",
+        "alt": "Campera Presentación Boca"
+      },
+      {
+        "img": "https://bocashop.vteximg.com.br/arquivos/ids/168666-550-550/HB0565_1.jpg?v=637944618994930000",
+        "nombre": "Campera Invierno Boca",
+        "valor": "$62.999",
+        "alt": "Campera Invierno Boca"
+      },
+      {
+        "img": "https://bocashop.vteximg.com.br/arquivos/ids/169683-550-550/HR8267_1.png?v=638193397661070000",
+        "nombre": "Camiseta Titular Basquet",
+        "valor": "$17.999",
+        "alt": "Camiseta Titular Basquet"
+      },
+      {
+        "img": "https://bocashop.vteximg.com.br/arquivos/ids/169123-550-550/HC0986_2.jpg?v=638089800953630000",
+        "nombre": "Top de Entrenamiento Boca Juniors Condivo 22",
+        "valor": "$29.999",
+        "alt": "Top de Entrenamiento Boca Juniors Condivo 22"
+      },
+      {
+        "img": "https://bocashop.vteximg.com.br/arquivos/ids/168448-550-550/HN6141_1.jpg?v=637922174354200000",
+        "nombre": "Medias Titular Boca Jrs 22/23",
+        "valor": "$4.999",
+        "alt": "Medias Titular Boca Jrs 22/23"
+      },
+      {
+        "img": "https://bocashop.vteximg.com.br/arquivos/ids/168777-550-550/HN6142_1.jpg?v=637975642769870000",
+        "nombre": "Medias Alternativas Boca Jrs 22/23",
+        "valor": "$4.999",
+        "alt": "Medias Alternativas Boca Jrs 22/23"
+      }
+    ]
+  }
+  

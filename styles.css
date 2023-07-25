@@ -208,6 +208,10 @@ h1 {
   transform: scale(1.05);
 }
 
+.costo-titulo .costo-precio {
+  font-size: 0.1rem;
+}
+
 /* SECCION RESPONSIVE */
 @media screen and (max-width: 903px) {
   .header {

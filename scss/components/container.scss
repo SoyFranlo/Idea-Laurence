@@ -17,7 +17,7 @@
       .item {
         max-width: fit-content;
         margin: auto;
-        border: 1px solid $secondary-color;
+        border: 1px solid #666;
         border-radius: 10px;
         padding: 20px;
         transition: .3s;
@@ -27,7 +27,7 @@
         }
         
         &:hover {
-          box-shadow: 0 0 10px $secondary-color;
+          box-shadow: 0 0 10px #666;
           transform: scale(1.05);
         }
         
@@ -48,7 +48,7 @@
           display: block;
           margin: 10px auto;
           border: none;
-          background-color: $primary-color;
+          background-color: #0d0058;
           color: #fff;
           padding: 5px 15px;
           border-radius: 5px;
