@@ -1,8 +1,5 @@
-
 const productContainer = document.querySelector(".contenedor-items");
-// let usuarioGuardado = localStorage.getItem("usuario");
-// let usuario = usuarioGuardado ? JSON.parse(usuarioGuardado) : null;
-
+document
 
 async function fetchProductos() {
   try {
@@ -26,7 +23,12 @@ async function fetchProductos() {
       botonAgregar.addEventListener("click", agregarAlCarritoClicked);
     });
   } catch (error) {
-    console.log("Ha ocurrido un error:", error);
+    Swal.fire({
+      icon: "error",
+      title: "Ups...",
+      text: "Algo salió mal!",
+      footer: "Intentelo nuevamente en unos instantes.",
+    });
   }
 }
 fetchProductos();
@@ -35,22 +37,21 @@ fetchProductos();
 let carritoVisible = false;
 
 //Espermos que todos los elementos de la página cargen para ejecutar el script
-if (document.readyState == "loading") {
+if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", ready);
 } else {
   ready();
 }
-
 function ready() {
   mostrarFormularioInicio();
-};
+}
 // Función para mostrar el formulario de inicio con SweetAlert
 function mostrarFormularioInicio() {
   Swal.fire({
-    title: 'Formulario de Inicio',
+    title: "Pais de Residencia",
     html: `
-      <input type="text" id="nombre" class="swal2-input" placeholder="Nombre" required>
-      <input type="email" id="email" class="swal2-input" placeholder="Email" required>
+    <div>Lo necesitamos para calcular el costo de envío</div>
+    <hr>
       <select id="sel-pais" class="swal2-input" required>
         <option value="" selected disabled>Elegir País</option>
         <option value="Argentina">Argentina</option>
@@ -59,28 +60,17 @@ function mostrarFormularioInicio() {
     `,
     focusConfirm: false,
     showCancelButton: false,
-    confirmButtonText: 'Enviar',
+    confirmButtonText: "Enviar",
     allowOutsideClick: false,
     preConfirm: () => {
-      const nombre = document.getElementById("nombre").value;
-      const email = document.getElementById("email").value;
       const paisSeleccionado = document.getElementById("sel-pais").value;
 
-      if (!nombre || !email || !paisSeleccionado) {
-        Swal.showValidationMessage('Por favor, completa todos los campos.');
+      if (!paisSeleccionado) {
+        Swal.showValidationMessage("Por favor, completa todos los campos.");
         return;
       }
-
-      const emailRegex = /^\S+@\S+\.\S+$/;
-      if (!emailRegex.test(email)) {
-        Swal.showValidationMessage('El correo ingresado no es válido.');
-        return;
-      }
-
       // Guardar la información del usuario, incluyendo el país seleccionado
       const nuevousuario = {
-        nombreUsuario: nombre,
-        emailUsuario: email,
         paisUsuario: paisSeleccionado,
         estaLogueado: false,
       };
@@ -88,69 +78,106 @@ function mostrarFormularioInicio() {
 
       // Mostrar Sweet Alert con el mensaje de bienvenida
       Swal.fire({
-        icon: 'success',
-        title: `¡Bienvenido/a ${nombre}!`,
-        text: 'Gracias por unirte a Pasión Xeneize.',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Al confirmar, ocultamos el SweetAlert y realizamos las acciones adicionales
-          document.getElementById("myForm").style.display = "none";
-        }
+        icon: "success",
+        title: `¡Bienvenido/a!`,
+        text: "Gracias por unirte a Pasión Xeneize.",
       });
     },
   });
 }
-  //Agregremos funcionalidad a los botones eliminar del carrito
-  let botonesEliminarItem = document.getElementsByClassName("btn-eliminar");
-  for (let i = 0; i < botonesEliminarItem.length; i++) {
-    let button = botonesEliminarItem[i];
-    button.addEventListener("click", eliminarItemCarrito);
-  }
+//Agregremos funcionalidad a los botones eliminar del carrito
+let botonesEliminarItem = document.getElementsByClassName("btn-eliminar");
+for (let i = 0; i < botonesEliminarItem.length; i++) {
+  let button = botonesEliminarItem[i];
+  button.addEventListener("click", eliminarItemCarrito);
+}
 
-  //Agrego funcionalidad al boton sumar cantidad
-  let botonesSumarCantidad = document.getElementsByClassName("sumar-cantidad");
-  for (let i = 0; i < botonesSumarCantidad.length; i++) {
-    let button = botonesSumarCantidad[i];
-    button.addEventListener("click", sumarCantidad);
-  }
+//Agrego funcionalidad al boton sumar cantidad
+let botonesSumarCantidad = document.getElementsByClassName("sumar-cantidad");
+for (let i = 0; i < botonesSumarCantidad.length; i++) {
+  let button = botonesSumarCantidad[i];
+  button.addEventListener("click", sumarCantidad);
+}
 
-  //Agrego funcionalidad al boton restar cantidad
-  let botonesRestarCantidad =
-    document.getElementsByClassName("restar-cantidad");
-  for (let i = 0; i < botonesRestarCantidad.length; i++) {
-    let button = botonesRestarCantidad[i];
-    button.addEventListener("click", restarCantidad);
-  }
+//Agrego funcionalidad al boton restar cantidad
+let botonesRestarCantidad = document.getElementsByClassName("restar-cantidad");
+for (let i = 0; i < botonesRestarCantidad.length; i++) {
+  let button = botonesRestarCantidad[i];
+  button.addEventListener("click", restarCantidad);
+}
 
-  //Agregamos funcionalidad al boton Agregar al carrito
-  let botonesAgregarAlCarrito = document.getElementsByClassName("boton-item");
-  for (let i = 0; i < botonesAgregarAlCarrito.length; i++) {
-    let button = botonesAgregarAlCarrito[i];
-    button.addEventListener("click", agregarAlCarritoClicked);
-  }
+//Agregamos funcionalidad al boton Agregar al carrito
+let botonesAgregarAlCarrito = document.getElementsByClassName("boton-item");
+for (let i = 0; i < botonesAgregarAlCarrito.length; i++) {
+  let button = botonesAgregarAlCarrito[i];
+  button.addEventListener("click", agregarAlCarritoClicked);
+}
 
-  //Agregamos funcionalidad al botón comprar
-  document
-    .getElementsByClassName("btn-pagar")[0]
-    .addEventListener("click", pagarClicked);
-
+//Agregamos funcionalidad al botón comprar
+document
+  .getElementsByClassName("btn-pagar")[0]
+  .addEventListener("click", pagarClicked);
 
 //Eliminamos todos los elementos del carrito y lo ocultamos
 
 function pagarClicked() {
   // Realizamos directamente el proceso de compra
-  Swal.fire({
-    icon: 'success',
-    title: 'Gracias por tu compra!',
-    text: 'Serás redirigido/a al inicio',
-  });
-  setTimeout(function(){
-    window.location.reload();
- }, 3000);
+  formularioDePago();
   // Vaciamos el carrito
   vaciarCarrito();
 }
+function formularioDePago() {
+  Swal.fire({
+    title: "Complete sus datos para finalizar la compra",
+    html: `
+    <input type="text" id="nombre" class="swal2-input" placeholder="Nombre" required>
+    <input type="email" id="email" class="swal2-input" placeholder="Email" required>
+      <select id="met-pago" class="swal2-input" required>
+        <option value="" selected disabled>Elegir Metodo de Pago</option>
+        <option value="MercadoPago">Mercado Pago</option>
+        <option value="Transferencia">Transferencia</option>
+        <option value="Efectivo">Efectivo en un Pago Fácil</option>
+      </select>
+    `,
+    focusConfirm: false,
+    showCancelButton: false,
+    confirmButtonText: "Enviar",
+    allowOutsideClick: false,
+    preConfirm: () => {
+      const nombre = document.getElementById("nombre").value;
+      const email = document.getElementById("email").value;
+      const metodoPago = document.getElementById("met-pago").value;
 
+      if (!nombre || !email || !metodoPago) {
+        Swal.showValidationMessage("Por favor, completa todos los campos.");
+        // return;
+      } else {
+        Swal.fire({
+          icon: "success",
+          title: "Gracias por tu compra!",
+          text: "Serás redirigido/a al inicio",
+        });
+        setTimeout(function () {
+          window.location.reload();
+        }, 3000);
+      }
+
+      const emailRegex = /^\S+@\S+\.\S+$/;
+      if (!emailRegex.test(email)) {
+        Swal.showValidationMessage("El correo ingresado no es válido.");
+        return;
+      }
+
+      // Guardar la información del usuario, incluyendo el país seleccionado
+      const usuarioinfo = {
+        nombreUsuario: nombre,
+        emailUsuario: email,
+        estaLogueado: false,
+      };
+      localStorage.setItem("usuario", JSON.stringify(usuarioinfo));
+    },
+  });
+}
 
 // Función para vaciar el carrito
 function vaciarCarrito() {
@@ -171,18 +198,43 @@ function agregarAlCarritoClicked(event) {
   let imagenSrc = item.getElementsByClassName("img-item")[0].src;
   console.log(imagenSrc);
 
-  agregarItemAlCarrito(titulo, precio, imagenSrc);
+  let itemsCarrito = document.getElementsByClassName("carrito-items")[0];
+  let itemExistente = null;
+
+  // Fijarse si el item ya esta en el carrito
+  let carritoItems = itemsCarrito.getElementsByClassName("carrito-item");
+  for (let i = 0; i < carritoItems.length; i++) {
+    let itemCarrito = carritoItems[i];
+    let tituloCarrito = itemCarrito.getElementsByClassName("carrito-item-titulo")[0].innerText;
+
+    if (tituloCarrito === titulo) {
+      itemExistente = itemCarrito;
+      break;
+    }
+  }
+
+  if (itemExistente) {
+    // Si el item ya existe, aumenta su cantidad
+    let cantidadItem = itemExistente.getElementsByClassName("carrito-item-cantidad")[0];
+    let cantidadActual = parseInt(cantidadItem.value, 10);
+    cantidadActual++;
+    cantidadItem.value = cantidadActual;
+    actualizarTotalCarrito();
+  } else {
+    // Si el item no fue agregado aún, procede a agregarse
+    agregarItemAlCarrito(titulo, precio, imagenSrc);
+  }
 
   mostrarCarrito();
 }
 function obtenerCostoEnvio(pais) {
   if (pais === "Argentina") {
-    return 5000;
+    return 2000;
   } else if (pais === "Uruguay") {
-    return 3000;
+    return 4000;
   }
-  // Si el país no es Argentina ni Uruguay, retornar 0 o cualquier otro valor por defecto
-  return 0;
+  // Si el país no es Argentina ni Uruguay, retornar el costo más caro
+  return 4000;
 }
 // Obtener el costo de envío según el país seleccionado
 const usuarioGuardado = localStorage.getItem("usuario");
@@ -191,8 +243,10 @@ if (usuarioGuardado) {
   const usuario = JSON.parse(usuarioGuardado);
   costoEnvio = obtenerCostoEnvio(usuario.paisUsuario);
 }
-// Crear el elemento div para el costo de envío y agregarlo al carrito
-const costoEnvioSpan = document.getElementsByClassName("carrito-item-precio")[0];
+// Crear el elemento span para el costo de envío y agregarlo al carrito
+const costoEnvioSpan = document.getElementsByClassName(
+  "carrito-item-precio"
+)[0];
 costoEnvioSpan.innerHTML = `Costo de Envio: $${costoEnvio}`;
 document.getElementsByClassName("carrito-total")[0].appendChild(costoEnvioSpan);
 //Función que hace visible el carrito
@@ -204,24 +258,14 @@ function mostrarCarrito() {
 
   let items = document.getElementsByClassName("contenedor-items")[0];
   items.style.width = "60%";
-    
-  }
-  
+}
+
 //Función que agrega un item al carrito
 function agregarItemAlCarrito(titulo, precio, imagenSrc) {
-  let item = document.createElement("div");
-  item.classList.add("item");
-  let itemsCarrito = document.getElementsByClassName("carrito-items")[0];
-  //Controlamos que el item que intenta ingresar no se encuentre en el carrito
-  let nombresItemsCarrito = itemsCarrito.getElementsByClassName(
-    "carrito-item-titulo"
-  );
-  for (let i = 0; i < nombresItemsCarrito.length; i++) {
-    if (nombresItemsCarrito[i].innerText == titulo) {
-      alert("El item ya se encuentra en el carrito");
-    }
-  }
-  let itemCarritoContenido = `
+  let itemsCarrito = document.getElementsByClassName("carrito-items")[0];{
+    let item = document.createElement("div");
+    item.classList.add("item");
+    let itemCarritoContenido = `
         <div class="carrito-item">
             <img src="${imagenSrc}" width="80px" alt="">
             <div class="carrito-item-detalles">
@@ -238,26 +282,26 @@ function agregarItemAlCarrito(titulo, precio, imagenSrc) {
             </button>
         </div>
     `;
-  item.innerHTML = itemCarritoContenido;
-  itemsCarrito.append(item);
+    item.innerHTML = itemCarritoContenido;
+    itemsCarrito.append(item);
 
-  //Agregamos la funcion eliminar
-  item
-    .getElementsByClassName("btn-eliminar")[0]
-    .addEventListener("click", eliminarItemCarrito);
+    //Agregamos la funcion eliminar
+    item
+      .getElementsByClassName("btn-eliminar")[0]
+      .addEventListener("click", eliminarItemCarrito);
 
-  //Agregmos al funcion restar
-  let botonRestarCantidad = item.getElementsByClassName("restar-cantidad")[0];
-  botonRestarCantidad.addEventListener("click", restarCantidad);
+    //Agregmos al funcion restar
+    let botonRestarCantidad = item.getElementsByClassName("restar-cantidad")[0];
+    botonRestarCantidad.addEventListener("click", restarCantidad);
 
-  //Agregamos la funcion sumar
-  let botonSumarCantidad = item.getElementsByClassName("sumar-cantidad")[0];
-  botonSumarCantidad.addEventListener("click", sumarCantidad);
+    //Agregamos la funcion sumar
+    let botonSumarCantidad = item.getElementsByClassName("sumar-cantidad")[0];
+    botonSumarCantidad.addEventListener("click", sumarCantidad);
 
-  //Actualizamos total
-  actualizarTotalCarrito();
+    //Actualizamos total
+    actualizarTotalCarrito();
+  }
 }
-
 //Aumento la cantidad del elemento seleccionado
 function sumarCantidad(event) {
   let buttonClicked = event.target;
@@ -298,9 +342,6 @@ function eliminarItemCarrito(event) {
   buttonClicked.parentElement.parentElement.remove();
   //Actualizamos el total del carrito
   actualizarTotalCarrito();
-
-  //La siguiente función controla si hay elementos en el carrito
-  //Si no hay, elimino el carrito
   ocultarCarrito();
 }
 
@@ -337,7 +378,7 @@ function actualizarTotalCarrito() {
     let cantidad = cantidadItem.value;
     total = total + precio * cantidad;
   }
-const nuevoTotal = total + costoEnvio;
+  const nuevoTotal = total + costoEnvio;
   document.getElementsByClassName("carrito-precio-total")[0].innerText =
     "$" + nuevoTotal.toLocaleString("es") + ",00";
 }
