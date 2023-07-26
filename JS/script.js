@@ -1,5 +1,5 @@
 const productContainer = document.querySelector(".contenedor-items");
-document
+document;
 
 async function fetchProductos() {
   try {
@@ -48,14 +48,14 @@ function ready() {
 // Función para mostrar el formulario de inicio con SweetAlert
 function mostrarFormularioInicio() {
   Swal.fire({
-    title: "Pais de Residencia",
+    title: "Provincia de Residencia",
     html: `
     <div>Lo necesitamos para calcular el costo de envío</div>
     <hr>
-      <select id="sel-pais" class="swal2-input" required>
+      <select id="sel-Provincia" class="swal2-input" required>
         <option value="" selected disabled>Elegir País</option>
-        <option value="Argentina">Argentina</option>
-        <option value="Uruguay">Uruguay</option>
+        <option value="CABA">CABA</option>
+        <option value="Cordoba">Cordoba</option>
       </select>
     `,
     focusConfirm: false,
@@ -63,15 +63,15 @@ function mostrarFormularioInicio() {
     confirmButtonText: "Enviar",
     allowOutsideClick: false,
     preConfirm: () => {
-      const paisSeleccionado = document.getElementById("sel-pais").value;
+      const ProvinciaSeleccionado = document.getElementById("sel-Provincia").value;
 
-      if (!paisSeleccionado) {
+      if (!ProvinciaSeleccionado) {
         Swal.showValidationMessage("Por favor, completa todos los campos.");
         return;
       }
       // Guardar la información del usuario, incluyendo el país seleccionado
       const nuevousuario = {
-        paisUsuario: paisSeleccionado,
+        ProvinciaUsuario: ProvinciaSeleccionado,
         estaLogueado: false,
       };
       localStorage.setItem("usuario", JSON.stringify(nuevousuario));
@@ -205,7 +205,9 @@ function agregarAlCarritoClicked(event) {
   let carritoItems = itemsCarrito.getElementsByClassName("carrito-item");
   for (let i = 0; i < carritoItems.length; i++) {
     let itemCarrito = carritoItems[i];
-    let tituloCarrito = itemCarrito.getElementsByClassName("carrito-item-titulo")[0].innerText;
+    let tituloCarrito = itemCarrito.getElementsByClassName(
+      "carrito-item-titulo"
+    )[0].innerText;
 
     if (tituloCarrito === titulo) {
       itemExistente = itemCarrito;
@@ -215,7 +217,9 @@ function agregarAlCarritoClicked(event) {
 
   if (itemExistente) {
     // Si el item ya existe, aumenta su cantidad
-    let cantidadItem = itemExistente.getElementsByClassName("carrito-item-cantidad")[0];
+    let cantidadItem = itemExistente.getElementsByClassName(
+      "carrito-item-cantidad"
+    )[0];
     let cantidadActual = parseInt(cantidadItem.value, 10);
     cantidadActual++;
     cantidadItem.value = cantidadActual;
@@ -227,13 +231,13 @@ function agregarAlCarritoClicked(event) {
 
   mostrarCarrito();
 }
-function obtenerCostoEnvio(pais) {
-  if (pais === "Argentina") {
+function obtenerCostoEnvio(Provincia) {
+  if (Provincia === "CABA") {
     return 2000;
-  } else if (pais === "Uruguay") {
+  } else if (Provincia === "Cordoba") {
     return 4000;
   }
-  // Si el país no es Argentina ni Uruguay, retornar el costo más caro
+  // Si el país no es CABA ni Cordoba, retornar el costo más caro
   return 4000;
 }
 // Obtener el costo de envío según el país seleccionado
@@ -241,7 +245,7 @@ const usuarioGuardado = localStorage.getItem("usuario");
 let costoEnvio = 0;
 if (usuarioGuardado) {
   const usuario = JSON.parse(usuarioGuardado);
-  costoEnvio = obtenerCostoEnvio(usuario.paisUsuario);
+  costoEnvio = obtenerCostoEnvio(usuario.ProvinciaUsuario);
 }
 // Crear el elemento span para el costo de envío y agregarlo al carrito
 const costoEnvioSpan = document.getElementsByClassName(
@@ -262,7 +266,8 @@ function mostrarCarrito() {
 
 //Función que agrega un item al carrito
 function agregarItemAlCarrito(titulo, precio, imagenSrc) {
-  let itemsCarrito = document.getElementsByClassName("carrito-items")[0];{
+  let itemsCarrito = document.getElementsByClassName("carrito-items")[0];
+  {
     let item = document.createElement("div");
     item.classList.add("item");
     let itemCarritoContenido = `
